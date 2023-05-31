@@ -64,3 +64,15 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# Instalation Steps
+
+1. Clone project into your machine
+2. copy .env.example to your .env file
+3. change db credentials
+4. run "composer install"
+5. run "php artisan key:generate"
+6. run "./vendor/bin/sail up"; use sudo if necessary
+7. enter your project's shell using "root-shell", then run "chown -R sail:sail storage", finally, exit terminal.
+
+now, your project should be run perfectly, to access it on your machine, enter 0.0.0.0:80 in your browser
