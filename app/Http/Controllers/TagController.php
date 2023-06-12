@@ -14,6 +14,16 @@ class TagController extends Controller
     }
 
     public function create(Request $request){
-        
+        $tag = New Tag;
+
+        $tag->tag = $request->tag;
+
+        $tag->save();
+
+        if(!$tag->save()){
+            return 'error';
+        } else {
+            return 'saved :)';
+        }
     }
 }
