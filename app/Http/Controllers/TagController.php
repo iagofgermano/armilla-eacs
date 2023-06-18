@@ -14,6 +14,9 @@ class TagController extends Controller
     }
 
     public function create(Request $request){
+        $validate = $request->validate([
+            'tag' => ['regex:/[A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9]/i','required']
+        ]);
         $tag = New Tag;
 
         $tag->tag = $request->tag;
