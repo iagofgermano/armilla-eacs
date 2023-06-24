@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('tag')->unique();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('event_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }
