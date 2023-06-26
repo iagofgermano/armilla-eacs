@@ -14,6 +14,6 @@ use App\Http\Controllers\TagController;
 |
 */
 
-Route::get('/tag', [TagController::class, 'index']);
+Route::get('/tag', [TagController::class, 'check']);
 
-Route::post('/tag/create', [TagController::class, 'create']);
+Route::get('/tag/register', [TagController::class, 'register']);
