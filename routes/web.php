@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/owners/login', function () {
+    return view('owners.login');
+});
+
+Route::get('/owners/register', function () {
+    return view('owners.register');
+});
+
+Route::get('/users/login', function () {
+    return view('users.login');
+});
+
+Route::get('/users/register', function () {
+    return view('users.register');
+});
+
+ //Route::post('/users/submit', [UserController::register]);
+
+//Route::post('/owners/submit', [OwnerController::register]);
