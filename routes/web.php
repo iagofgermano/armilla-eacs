@@ -15,7 +15,11 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// view routes
+
+/*
+    GET routes
+
+*/
 
 Route::get('/', function () {
     return view('home');
@@ -25,41 +29,56 @@ Route::get('/', function () {
 
 Route::get('/owners/login', function () {
     if(session()->has('name')){
-        return redirect('/owners');
+        return redirect('/owners/' . session()->get('name'));
     }
     return view('owners.login');
 });
 
 Route::get('/owners/register', function () {
     if(session()->has('name')){
-            return redirect('/owners');
+        return redirect('/owners/' . session()->get('name'));
         }
     return view('owners.register');
 });
 
-Route::get('/owners', function () {
-    return view('owners.home');
+Route::get('/owners/{name}', function (String $name) {
+    if(session()->has('name')){
+        if($name == session()->get('name')){
+            return view('owners.home');
+        }
+    }
+    return view('owners.login');
 });
 
 // user routes
 
 Route::get('/users/login', function () {
     if(session()->has('username')){
-        return redirect('/users');
+        return redirect('/users/' . session()->get('username'));
     }
     return view('users.login');
 });
 
 Route::get('/users/register', function () {
     if(session()->has('username')){
-        return redirect('/users');
+        return redirect('/users/' . session()->get('username'));
     }
     return view('users.register');
 });
 
-Route::get('/users', function () {
-    return view('users.home');
+Route::get('/users/{username}', function (String $username) {
+    if(session()->has('username')){
+        if($username == session()->get('username')){
+            return view('users.home');
+        }
+    }
+    return view('users.login');
 });
+
+/*
+    POST routes
+    
+*/
 
 
 // register routes
