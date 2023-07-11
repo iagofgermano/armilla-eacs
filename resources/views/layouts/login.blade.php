@@ -9,6 +9,7 @@
 <body>
 
     <header>
+        <a href="/">HOME</a>
         <a href="/owners/login">Para empresas</a>
         <a href="/users/login">Para usuários</a>
     </header>

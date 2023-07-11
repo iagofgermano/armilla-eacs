@@ -2,7 +2,7 @@
 
 @section('title','Login de Empresas')
 @section('body-title','Login de Empresas')
-@section('action','/owners')
+@section('action','/owners/login')
 @section('fields')
 <p>
     <label for="name">Usuário</label>

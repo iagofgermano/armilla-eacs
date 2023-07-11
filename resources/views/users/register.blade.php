@@ -6,7 +6,7 @@
 @section('fields')
 <p>
     <label for="name">Usuário</label>
-    <input type="text" name="name" id="name" placeholder="Usuário" required>
+    <input type="text" name="username" id="username" placeholder="Usuário" required>
 </p>
 
 <p>
@@ -20,6 +20,6 @@
 
 <p>
     <label for="confirmpassword">Confirme a senha</label>
-    <input type="confirmpassword" name="confirmpassword" id="confirmpassword" placeholder="Senha" required>
+    <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Senha" required>
 </p>
 @endsection

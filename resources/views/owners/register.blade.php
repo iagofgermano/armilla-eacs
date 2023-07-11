@@ -24,6 +24,6 @@
 
 <p>
     <label for="confirmpassword">Confirme a senha</label>
-    <input type="confirmpassword" name="confirmpassword" id="confirmpassword" placeholder="Senha">
+    <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Senha">
 </p>
 @endsection

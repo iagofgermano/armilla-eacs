@@ -2,12 +2,12 @@
 
 @section('title','Login de Usuário')
 @section('body-title','Login de Usuário')
-@section('action','/users')
+@section('action','/users/login')
 @section('fields')
 
 <p>
     <label for="name">Usuário</label>
-    <input type="text" name="name" id="name" placeholder="Usuário">
+    <input type="text" name="username" id="username" placeholder="Usuário">
 </p>
 <p>
     <label for="password">Senha</label>
