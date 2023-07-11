@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\UserController;
 
@@ -35,9 +36,6 @@ Route::get('/owners/login', function () {
 });
 
 Route::get('/owners/register', function () {
-    if(session()->has('name')){
-        return redirect('/owners/' . session()->get('name'));
-        }
     return view('owners.register');
 });
 
@@ -52,17 +50,14 @@ Route::get('/owners/{name}', function (String $name) {
 
 // user routes
 
-Route::get('/users/login', function () {
-    if(session()->has('username')){
+Route::get('/users/login', function (Request $request) {
+    if($request->session()->has('username')){
         return redirect('/users/' . session()->get('username'));
     }
     return view('users.login');
 });
 
 Route::get('/users/register', function () {
-    if(session()->has('username')){
-        return redirect('/users/' . session()->get('username'));
-    }
     return view('users.register');
 });
 
@@ -77,7 +72,7 @@ Route::get('/users/{username}', function (String $username) {
 
 /*
     POST routes
-    
+
 */
 
 
@@ -91,3 +86,9 @@ Route::post('/owners/submit', [OwnerController::class, 'register']);
 Route::post('/users/login', [UserController::class, 'auth']);
 
 Route::post('/owners/login', [OwnerController::class, 'auth']);
+
+//logout routes
+
+Route::get('/owners/logout', [OwnerController::class, 'logout']);
+
+Route::get('/users/logout', [UserController::class, 'logout']);

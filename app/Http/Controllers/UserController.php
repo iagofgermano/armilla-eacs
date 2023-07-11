@@ -43,6 +43,12 @@ class UserController extends Controller
 
         $request->session()->put('username', $data['username']);
 
-        return redirect('/users');
+        return redirect()->intended('/users/'.$data['username']);
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        return redirect()->intended('/users/login');
     }
 }

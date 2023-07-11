@@ -21,7 +21,7 @@ class OwnerController extends Controller
             
             $request->session()->put('name', $data['name']);
 
-            return redirect()->intended('/owners');
+            return redirect()->intended('/owners/' . $data['name']);
         }
  
         return back()->withErrors([
@@ -41,6 +41,12 @@ class OwnerController extends Controller
 
         $request->session()->put('name', $data['name']);
 
-        return redirect('/owners');
+        return redirect()->intended('/owners/' . $data['name']);
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        return redirect()->intended('/owners/login');
     }
 }
