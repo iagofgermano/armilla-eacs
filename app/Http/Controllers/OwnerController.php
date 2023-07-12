@@ -11,12 +11,12 @@ class OwnerController extends Controller
     public function auth(Request $request, Owner $owner){
         $credentials = $request->validate([
             'name' => ['required'],
-            'password' => ['required']
+            'password' => ['required'],
         ]);
 
         $data = $request->input();
         
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('owner')->attempt($credentials)) {
             $request->session()->regenerate();
             
             $request->session()->put('name', $data['name']);

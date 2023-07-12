@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomepageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,14 +41,7 @@ Route::get('/owners/register', function () {
     return view('owners.register');
 });
 
-Route::get('/owners/{name}', function (String $name) {
-    if(session()->has('name')){
-        if($name == session()->get('name')){
-            return view('owners.home');
-        }
-    }
-    return view('owners.login');
-});
+Route::get('/owners/{name}', [HomepageController::class, 'getEvents']);
 
 // user routes
 
@@ -61,14 +56,7 @@ Route::get('/users/register', function () {
     return view('users.register');
 });
 
-Route::get('/users/{username}', function (String $username) {
-    if(session()->has('username')){
-        if($username == session()->get('username')){
-            return view('users.home');
-        }
-    }
-    return view('users.login');
-});
+Route::get('/users/{username}', [HomepageController::class, 'render']);
 
 /*
     POST routes
