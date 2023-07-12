@@ -13,7 +13,7 @@ class Event extends Model
 
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(Owner::class, 'owner_id');
+        return $this->belongsTo(Owner::class);
     }
 
     public function tags(): HasMany
