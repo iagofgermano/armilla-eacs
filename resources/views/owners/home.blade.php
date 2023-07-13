@@ -4,8 +4,16 @@
 @section('profile', session('name'))
 
 @section('content')
-<a href="/owners/logout">Logout</a>
 <p>
-    Lorem Ipsum
+    <a href="/owners/logout">Logout</a>
+    <a href="/owners/{{session('name')}}/register/event">Novo Evento</a>
+</p>
+<p>
+    Meus Eventos
+    <ul>
+        @foreach($events as $event)
+        <li>{{$event->name}}</li>
+        @endforeach
+    </ul>
 </p>
 @endsection

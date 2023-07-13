@@ -43,6 +43,8 @@ Route::get('/owners/register', function () {
 
 Route::get('/owners/{name}', [HomepageController::class, 'getEvents']);
 
+Route::get('/owners/{name}/register/event', [HomepageController::class, 'getTagsAvailable']);
+
 // user routes
 
 Route::get('/users/login', function (Request $request) {
@@ -80,3 +82,7 @@ Route::post('/owners/login', [OwnerController::class, 'auth']);
 Route::get('/owners/logout', [OwnerController::class, 'logout']);
 
 Route::get('/users/logout', [UserController::class, 'logout']);
+
+//event register
+
+Route::post('/owners/register/event', [EventController::class, 'register']);
