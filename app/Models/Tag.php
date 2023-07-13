@@ -10,6 +10,12 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'tag',
+        'user_id',
+        'event_id',
+    ];
+
     public function event(): belongsTo
     {
         return $this->belongsTo(Event::class);

@@ -11,6 +11,13 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'active',
+        'owner_id',
+    ];
+
     public function owner(): BelongsTo
     {
         return $this->belongsTo(Owner::class);
