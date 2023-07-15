@@ -12,7 +12,12 @@
     Meus Eventos
     <ul>
         @foreach($events as $event)
-        <li>{{$event->name}}</li>
+        <li><a href="/owners/{{session('name')}}/event/{{$event->id}}">{{$event->name}}</a>
+
+        @if(!$event->active)
+        (Inativo)
+        @endif
+        </li>
         @endforeach
     </ul>
 </p>

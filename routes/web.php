@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,10 @@ Route::get('/owners/register', function () {
 });
 
 Route::get('/owners/{name}', [HomepageController::class, 'getEvents']);
+
+Route::get('/owners/{name}/event/{event_id}', [EventController::class, 'renderEvent']);
+
+Route::get('/owners/{name}/event/{event_id}/inactivate', [EventController::class, 'inactivate']);
 
 Route::get('/owners/{name}/register/event', [HomepageController::class, 'getTagsAvailable']);
 

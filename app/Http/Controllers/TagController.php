@@ -29,15 +29,19 @@ class TagController extends Controller
 
     public function check(Request $request)
     {
-        $tag = Tag::where('tag', $request->tag)->first();
+        $validate = $request->validate([
+            'tag' => ['regex:/[A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9]/i','required']
+        ]);
 
+        $tag = Tag::where('tag', $request->tag)->first();
+        
         $active = $tag->event->active;
 
         if($active == '1')
         {
-            return true;
+            return 'ok';
         } else {
-            return false;
+            return 'not ok';
         }
     }
 }

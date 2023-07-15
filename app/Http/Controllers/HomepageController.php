@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Event;
 use App\Models\Owner;
+use App\Models\Tag;
 
 class HomepageController extends Controller
 {
@@ -29,9 +30,14 @@ class HomepageController extends Controller
         if(session()->has('name')){
             if($name == session()->get('name')){
 
-                $events = Owner::where('name',$name)->first()->events;
+                $owner = Owner::where('name', $name)->first();
 
-                
+                $owner_id = $owner['id'];
+
+                $request->session()->put('owner_id', $owner_id);
+
+                $events = $owner->events;
+
                 
                 return view('owners.home', ['events' => $events]);
             }
@@ -39,5 +45,16 @@ class HomepageController extends Controller
         return view('owners.login');
     }
 
+    public function getTagsAvailable(Request $request, String $name){
+        if(session()->has('name')){
+            if($name == session()->get('name')){
+
+                $tagsAvailable = Tag::whereNull('event_id')->count();
+
+                return view('owners.events.register', ['tagsAvailable' => $tagsAvailable]);
+            }
+        }
+        return view('owners.login');
+    }
     
 }
