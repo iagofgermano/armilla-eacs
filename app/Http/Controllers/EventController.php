@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Owner;
 use App\Models\Tag;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -41,9 +42,23 @@ class EventController extends Controller
 
                 if($name == $event->owner->name){
 
-                    $eventTags = $event->tags->count();
+                    $eventTags = $event->tags;
 
-                    return view('owners.events.event', array('event' => $event, 'tags' => $eventTags));
+                    $numberOfTags = $eventTags->count();
+
+                    $usedTags = $eventTags->whereNotNull('user_id')->count();
+
+                    $freeTags = $numberOfTags - $usedTags;
+
+
+
+                    return view('owners.events.event', 
+                            array(
+                                'event' => $event, 
+                                'tags' => $numberOfTags,
+                                'usedTags' => $usedTags,
+                                'freeTags' => $freeTags
+                            ));
                 }
             }
         }
@@ -59,7 +74,7 @@ class EventController extends Controller
 
                 $event->active = '0';
 
-                $event->tags()->update(['event_id' => null]);
+                $event->tags()->update(['event_id' => null, 'user_id' => null]);
 
                 $event->save();
 
@@ -71,5 +86,76 @@ class EventController extends Controller
         }
 
         return redirect('/owners/login');
+    }
+
+    public function renderSubscribe(Request $request, String $username, String $event_id){
+        if(session()->has('username')){
+            if($username == session()->get('username')){
+
+                $event = Event::find($event_id);
+
+                $wages = $event->tags()->whereNull('user_id')->count();
+
+                $owner = $event->owner->name;
+
+                $user = User::where('username', $username)->first();
+
+                $isSubscribed = $event->tags()->where('user_id', $user->id)->count();
+                
+                return view('users.subscribe', 
+                        array(
+                            'event' => $event, 
+                            'owner' => $owner, 
+                            'wages' => $wages,
+                            'isSubscribed' => $isSubscribed,
+                        ));
+
+            }
+        }
+
+        return redirect('/users/login');
+    }
+
+    public function subscribe(Request $request, String $username, String $event_id){
+        if(session()->has('username')){
+            if($username == session()->get('username')){
+
+                $user = User::where('username', $username)
+                                ->first();
+
+                Tag::where('event_id', $event_id)
+                    ->whereNull('user_id')
+                    ->take(1)
+                    ->update(['user_id' => $user->id]);
+
+
+
+                return redirect('/users/' . session('username'));
+
+            }
+        }
+
+        return redirect('/users/login');
+    }
+
+    public function unsubscribe(Request $request, String $username, String $event_id) {
+        if(session()->has('username')){
+            if($username == session()->get('username')){
+
+                $user = User::where('username', $username)
+                ->first();
+
+                Tag::where('event_id', $event_id)
+                    ->where('user_id', $user->id)
+                    ->take(1)
+                    ->update(['user_id' => null]);
+
+                return redirect('/users/' . session('username'));
+
+
+            }
+        }
+
+        return redirect('/users/' . session('username'));
     }
 } 

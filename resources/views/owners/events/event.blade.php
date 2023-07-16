@@ -22,6 +22,8 @@ Descrição do evento:
 Status: Ativo
 <br>
 Número de Tags: {{$tags}} <br>
+Tags usadas: {{$usedTags}} <br>
+Tags livres: {{$freeTags}} <br>
 <a href="/owners/{{session('name')}}/event/{{$event->id}}/inactivate">Inativar</a>
 @else
 status: Inativo

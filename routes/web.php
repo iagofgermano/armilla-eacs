@@ -65,6 +65,12 @@ Route::get('/users/register', function () {
 
 Route::get('/users/{username}', [HomepageController::class, 'render']);
 
+Route::get('/users/{username}/events/{event_id}', [EventController::class, 'renderSubscribe']);
+
+Route::get('/users/{username}/events/{event_id}/subscribe', [EventController::class, 'subscribe']);
+
+Route::get('/users/{username}/events/{event_id}/unsubscribe', [EventController::class, 'unsubscribe']);
+
 /*
     POST routes
 
