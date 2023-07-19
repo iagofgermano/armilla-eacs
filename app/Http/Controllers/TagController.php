@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use App\Models\User;
 
 class TagController extends Controller
 {
@@ -34,12 +35,33 @@ class TagController extends Controller
         ]);
 
         $tag = Tag::where('tag', $request->tag)->first();
+
+        if(!$tag){
+            return 'not ok';
+        }
+
+        if(!$tag->user_id) {
+            return 'not ok';
+        }
+
+        $user = User::where('id', $tag->user_id)->first();
         
-        $active = $tag->event->active;
+        $event = $tag->event;
+
+        if(!$event){
+            return 'not ok';
+        }
+
+        $active = $event->active;
 
         if($active == '1')
         {
-            return 'ok';
+            return [
+                'allowed' => 'yes',
+                'user_id' => $tag->user_id,
+                'event_id' => $event->id
+                ];
+
         } else {
             return 'not ok';
         }
