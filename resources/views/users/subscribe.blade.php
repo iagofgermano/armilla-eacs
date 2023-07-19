@@ -26,11 +26,13 @@
         <p>
             Vagas restantes: {{$wages}}
         </p>
-        @if($isSubscribed == '1')
-            <a href="/users/{{session('username')}}/events/{{$event->id}}/unsubscribe">Retirar-se</a>
-        @else
-            <a href="/users/{{session('username')}}/events/{{$event->id}}/subscribe">Inscrever-se</a>
-        @endif
+            @if($isSubscribed == '1')
+                <a href="/users/{{session('username')}}/events/{{$event->id}}/unsubscribe">Retirar-se</a>
+            @else
+                @if($wages != 0)
+                    <a href="/users/{{session('username')}}/events/{{$event->id}}/subscribe">Inscrever-se</a>
+                @endif
+            @endif
     @else
         <h3>Este evento não está mais disponível</h3>
     @endif

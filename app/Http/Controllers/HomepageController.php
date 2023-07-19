@@ -7,18 +7,45 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Owner;
 use App\Models\Tag;
+use App\Models\User;
 
 class HomepageController extends Controller
 {
     public function render(Request $request, String $username){
         if(session()->has('username')){
             if($username == session()->get('username')){
-    
-                $events = Event::where('active', 1)
-                    ->orderBy('name')
-                    ->get();
 
-                return view('users.home', ['events' => $events]);
+                $user = User::where('username', $username)->first();
+
+                $tags = $user->tags->toArray();
+
+                $events = Event::where('active', 1);
+
+                $ids = array_column($tags, 'event_id');
+
+                if(!$tags){
+
+                    $subscribedEvents = [];
+                    $unsubscribedEvents = $events->get();
+
+                } else {
+
+                $unsubscribedEvents = $events->whereNotIn('id', $ids)->get();
+
+                $events2 = Event::where('active', 1);
+
+                $subscribedEvents = $events2->whereIn('id', $ids)->get();
+
+                }
+
+
+
+
+
+                return view('users.home', [
+                    'unsubscribedEvents' => $unsubscribedEvents,
+                    'subscribedEvents' => $subscribedEvents,
+                ]);
 
             }
         }
