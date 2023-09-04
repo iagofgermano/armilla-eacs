@@ -50,6 +50,8 @@ Route::get('/owners/{name}/event/{event_id}/inactivate', [EventController::class
 
 Route::get('/owners/{name}/register/event', [HomepageController::class, 'getTagsAvailable']);
 
+Route::get('/owners/{name}/event/{event_id}/tags', [EventController::class, 'getEventTags']);
+
 // user routes
 
 Route::get('/users/login', function (Request $request) {
@@ -71,6 +73,7 @@ Route::get('/users/{username}/events/{event_id}/subscribe', [EventController::cl
 
 Route::get('/users/{username}/events/{event_id}/unsubscribe', [EventController::class, 'unsubscribe']);
 
+Route::get('/users/{username}/events/{event_id}/mytag', [EventController::class, 'userTag']);
 /*
     POST routes
 

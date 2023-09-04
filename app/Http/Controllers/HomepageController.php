@@ -17,6 +17,8 @@ class HomepageController extends Controller
 
                 $user = User::where('username', $username)->first();
 
+                $request->session()->put('user_id', $user->id);
+
                 $tags = $user->tags->toArray();
 
                 $events = Event::where('active', 1);

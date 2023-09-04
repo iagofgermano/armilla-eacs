@@ -20,6 +20,8 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             
             $request->session()->regenerate();
+
+            $request->session()->put('user_id', $user->id);
             
             $request->session()->put($data);
 
@@ -42,6 +44,8 @@ class UserController extends Controller
         $user->save();
 
         $request->session()->put('username', $data['username']);
+
+        $request->session()->put('user_id', $user->id);
 
         return redirect()->intended('/users/'.$data['username']);
     }

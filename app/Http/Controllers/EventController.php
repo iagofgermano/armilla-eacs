@@ -29,7 +29,7 @@ class EventController extends Controller
             ->update(['event_id' => $event->id]);
 
         
-        return redirect('/owners/' . $owner_name);
+        return redirect('/owners/' . $owner_name . '/event/' . $event->id . '/tags');
         
         
     }
@@ -130,7 +130,7 @@ class EventController extends Controller
 
 
 
-                return redirect('/users/' . session('username'));
+                return redirect('/users/' . session('username') . '/events/' . $event_id . '/mytag');
 
             }
         }
@@ -157,5 +157,28 @@ class EventController extends Controller
         }
 
         return redirect('/users/' . session('username'));
+    }
+
+    public function getEventTags(Request $request, String $name, String $event_id){
+        if(session()->has('name')){
+            if($name == session()->get('name')){
+
+                $tags = Tag::where('event_id', $event_id)->get();
+
+                return view('owners.events.tags', array('tags' => $tags));
+            }
+        }
+    }
+
+    public function userTag(Request $request, String $username, String $event_id){
+        if(session()->has('username')){
+            if($username == session()->get('username')){
+                $tag = Tag::where('event_id', $event_id)
+                    ->where('user_id', session()->get('user_id'))
+                    ->first();
+
+                return view('users.tag', array('tag' => $tag));
+            }
+        }
     }
 } 
