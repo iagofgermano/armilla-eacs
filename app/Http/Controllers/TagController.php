@@ -9,10 +9,23 @@ use App\Models\User;
 class TagController extends Controller
 {
 
+    protected $tag_validation_rules = [
+        'regex:/[A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9]/i',
+        'required',
+    ];
+    protected $returnCodes = [
+        "not_saved" => array('status' => 'error'), 
+        "saved" => array('status' => 'success'),
+        "tag_unregistered" => array('validated' => false),
+        "tag_unused" => array('validated' => false),
+        "tag_without_event" => array('validated' => false),
+        "tag_event_inactive" => array('validated' => false),
+    ];
+
     public function register(Request $request)
     {
         $validate = $request->validate([
-            'tag' => ['regex:/[A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9]/i','required']
+            'tag' => $this->tag_validation_rules,
         ]);
         $tag = New Tag;
 
@@ -22,26 +35,27 @@ class TagController extends Controller
 
         if(!$tag->save())
         {
-            return 'error';
+            return $this->returnCodes["not_saved"];
         } else {
-            return 'saved :)';
+            return $this->returnCodes["saved"];
         }
     }
 
     public function check(Request $request)
     {
+        
         $validate = $request->validate([
-            'tag' => ['regex:/[A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9] [A-Fa-f0-9][A-Fa-f0-9]/i','required']
+            'tag' => $this->tag_validation_rules,
         ]);
 
         $tag = Tag::where('tag', $request->tag)->first();
 
         if(!$tag){
-            return 'not ok';
+            return $this->returnCodes["tag_unregistered"];
         }
 
         if(!$tag->user_id) {
-            return 'not ok';
+            return $this->returnCodes["tag_unused"];
         }
 
         $user = User::where('id', $tag->user_id)->first();
@@ -49,7 +63,7 @@ class TagController extends Controller
         $event = $tag->event;
 
         if(!$event){
-            return 'not ok';
+            return $this->returnCodes["tag_without_event"];
         }
 
         $active = $event->active;
@@ -57,13 +71,13 @@ class TagController extends Controller
         if($active == '1')
         {
             return [
-                'allowed' => 'yes',
+                'validated' => true,
                 'user_id' => $tag->user_id,
                 'event_id' => $event->id
                 ];
 
         } else {
-            return 'not ok';
+            return $this->returnCodes["tag_event_inactive"];
         }
     }
 }
