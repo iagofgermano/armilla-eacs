@@ -4,15 +4,17 @@
 @section('body-title','Login de Empresas')
 @section('action','/owners/login')
 @section('fields')
-<p>
+<br><br>
+<div class="user-box">
+    <input type="text" name="name" id="name" required autocomplete="username">
     <label for="name">Usuário</label>
-    <input type="text" name="name" id="name" placeholder="Usuário">
-</p>
-<p>
+</div>
+<div class="user-box">
+    <input type="password" name="password" id="password" required autocomplete="password">
     <label for="password">Senha</label>
-    <input type="password" name="password" id="password" placeholder="Senha">
-</p>
+</div>
+
 <p>
-    <a href="/owners/register">Não é cadastrado? Registre-se</a>
+    <a href="/owners/register" class="link-de-redirecionamento">Não é cadastrado? Registre-se</a>
 </p>
 @endsection

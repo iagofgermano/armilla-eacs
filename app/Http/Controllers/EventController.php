@@ -38,6 +38,10 @@ class EventController extends Controller
         if(session()->has('name')){
             if($name == session()->get('name')){
 
+                $owner = Owner::where('name', $name)->first();
+
+                $allEvents = $owner->events;
+
                 $event = Event::find($event_id);
 
                 if($name == $event->owner->name){
@@ -52,8 +56,9 @@ class EventController extends Controller
 
 
 
-                    return view('owners.events.event', 
+                    return view('owners.home', 
                             array(
+                                'allEvents' => $allEvents,
                                 'event' => $event, 
                                 'tags' => $numberOfTags,
                                 'usedTags' => $usedTags,

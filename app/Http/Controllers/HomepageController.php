@@ -65,10 +65,10 @@ class HomepageController extends Controller
 
                 $request->session()->put('owner_id', $owner_id);
 
-                $events = $owner->events;
+                $allEvents = $owner->events;
 
                 
-                return view('owners.home', ['events' => $events]);
+                return view('owners.home', ['allEvents' => $allEvents]);
             }
         }
         return view('owners.login');

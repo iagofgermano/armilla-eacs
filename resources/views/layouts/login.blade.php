@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('ArmillaEACS - Login<')</title>
+    <title>"ArmillaEACS - Login"</title>
     <link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
@@ -24,32 +24,31 @@
       </header>
 
     <main>
-        <h1>@yield('body-title')</h1>
-        <form action="@yield('action')" method="post">
-            <section class="login-form">
-                <div class="login-box">
-                    <h2>Login</h2>
+        <section class="login-form">
+            <div class="login-box">
+            <form action="@yield('action')" method="post">
+            <h2>@yield('body-title')</h2>
             @csrf
             <div class="user-box">
             @yield('fields')
-         </div>
+            </div>
+            <center>
             <button class="btn" type="submit">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                 Iniciar
-        </button>
+            </form>
+        </button></center>
+
     </div>
 </section>
-            <p>
-                <a href="/">Voltar</a>
-            </p>
-        </form>
-    </main>
-
+</main>
     <footer>
+        <div class="container">
         <p>&copy; 2023 ArmillaEACS - Early Access Control System</p>
+        </div>
     </footer>
 </body>
 </html>

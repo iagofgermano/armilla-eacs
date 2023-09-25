@@ -295,3 +295,48 @@ header {
 		}
 	}
 }
+
+.sidebar{
+    width: 150px;
+    background-color: #333;
+    padding: 20px;
+    font-size: large
+}
+
+.sidebar a {
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: large;
+
+}
+
+.sidebar a:hover {
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #ffd700;
+
+}
+
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.sidebar-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main-content {
+    flex-grow: 1;
+}
+
+.details {
+    margin-left: 250px;
+    padding: 20px;
+}
+

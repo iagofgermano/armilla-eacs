@@ -1,25 +1,26 @@
-@extends('layouts.login')
+@extends('layouts.register')
 
 @section('title','Cadastro de Usuário')
 @section('body-title','Cadastro de Usuário')
 @section('action','/users/submit')
 @section('fields')
-<p>
+<div class="user-box">
+    <input type="text" name="username" id="username" required autocomplete="username">
     <label for="name">Usuário</label>
-    <input type="text" name="username" id="username" placeholder="Usuário" required>
-</p>
+</div>
 
-<p>
-    <label for="email">E-Mail</label>
-    <input type="email" name="email" id="email" placeholder="Email" required>
-</p>
-<p>
-    <label for="password">Senha</label>
-    <input type="password" name="password" id="password" placeholder="Senha" required>
-</p>
+<div class="user-box">
+    <input type="email" name="email" id="email" required autocomplete="email">
+    <label for="email">E-mail</label>
+</div>
 
-<p>
+<div class="user-box">
+    <input type="password" name="password" id="password" required autocomplete="password">
+    <label for="name">Senha</label>
+</div>
+
+<div class="user-box">
+    <input type="password" name="confirmpassword" id="confirmpassword" required autocomplete="confirmpassword">
     <label for="confirmpassword">Confirme a senha</label>
-    <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Senha" required>
-</p>
+</div>
 @endsection

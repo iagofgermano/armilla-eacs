@@ -5,16 +5,15 @@
 @section('action','/users/login')
 @section('fields')
 
-<p>
+<div class="user-box">
+    <input type="text" name="name" id="name" required autocomplete="username">
     <label for="name">Usuário</label>
-    <input type="text" name="username" id="username" placeholder="Usuário">
-</p>
-<p>
+</div>
+<div class="user-box">
+    <input type="password" name="password" id="password" required autocomplete="password">
     <label for="password">Senha</label>
-    <input type="password" name="password" id="password" placeholder="Senha">
-</p>
+</div>
 <p>
-    <a href="/users/register">Não é cadastrado? Registre-se</a>
+    <a href="/users/register" class="link-de-redirecionamento">Não é cadastrado? Registre-se</a>
 </p>
-
 @endsection
