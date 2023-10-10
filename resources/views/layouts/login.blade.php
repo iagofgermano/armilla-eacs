@@ -10,7 +10,7 @@
 <body>
     <header>
         <nav class="navbar">
-          <a class="logo" href="#">ArmillaEACS</a>
+          <a class="logo" href="/">ArmillaEACS</a>
           <ul class="nav-links">
             <li><a href="/owners/login">Para empresas</a></li>
             <li><a href="/users/login">Para usuários</a></li>

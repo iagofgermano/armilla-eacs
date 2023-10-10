@@ -14,6 +14,11 @@
     <label for="password">Senha</label>
 </div>
 
+@error('name')
+    <span class="alert-danger">{{$message}} </span>
+@enderror
+
+
 <p>
     <a href="/owners/register" class="link-de-redirecionamento">Não é cadastrado? Registre-se</a>
 </p>

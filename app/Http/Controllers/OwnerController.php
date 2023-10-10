@@ -25,7 +25,7 @@ class OwnerController extends Controller
         }
  
         return back()->withErrors([
-            'name' => 'The provided credentials do not match our records.',
+            'name' => 'Informações incorretas.',
         ])->onlyInput('name');
     }
 
@@ -47,6 +47,7 @@ class OwnerController extends Controller
     public function logout(Request $request){
         Auth::logout();
         $request->session()->invalidate();
-        return redirect()->intended('/owners/login');
+        $request->session()->regenerateToken();
+        return redirect('/owners/login');
     }
 }

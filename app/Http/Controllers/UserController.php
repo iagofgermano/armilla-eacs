@@ -29,7 +29,7 @@ class UserController extends Controller
         }
  
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'username' => 'Informações incorretas.',
         ])->onlyInput('username');
     }
     
@@ -52,7 +52,11 @@ class UserController extends Controller
 
     public function logout(Request $request){
         Auth::logout();
+ 
         $request->session()->invalidate();
-        return redirect()->intended('/users/login');
+     
+        $request->session()->regenerateToken(); 
+
+        return redirect('/users/login');
     }
 }

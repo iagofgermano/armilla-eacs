@@ -29,6 +29,12 @@ Route::get('/', function () {
     return view('home');
 });
 
+//logout routes
+
+Route::get('/owners/logout', [OwnerController::class, 'logout']);
+
+Route::get('/users/logout', [UserController::class, 'logout']);
+
 //owner routes
 
 Route::get('/owners/login', function () {
@@ -54,7 +60,7 @@ Route::get('/owners/{name}/event/{event_id}/tags', [EventController::class, 'get
 
 // user routes
 
-Route::get('/users/login', function (Request $request) {
+Route::get('/users/login', function (Request $request) {    
     if($request->session()->has('username')){
         return redirect('/users/' . session()->get('username'));
     }
@@ -90,12 +96,6 @@ Route::post('/owners/submit', [OwnerController::class, 'register']);
 Route::post('/users/login', [UserController::class, 'auth']);
 
 Route::post('/owners/login', [OwnerController::class, 'auth']);
-
-//logout routes
-
-Route::get('/owners/logout', [OwnerController::class, 'logout']);
-
-Route::get('/users/logout', [UserController::class, 'logout']);
 
 //event register
 

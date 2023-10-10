@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('ArmillaEACS - Entry Access Control System<')</title>
     <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-l22Up6v3U6dQOik9J4RgtG8GVvswbvN6UwT6Tb+6zYSv6q3dCQ/9X4vjRIV8sNxbU+/SPmxFYwm7GhCcWQ2L7Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -42,21 +43,17 @@
             </ul>
           </div>
         </section>
-    
-        <section class="cta">
-          <div class="container">
-            <h3>Experimente Agora</h3>
-            <p>Entre em contato para adquirir o sistema ArmillaEACS para o seu evento.</p>
-            <a href="#" class="btn">Entre em Contato</a>
+            </form>
           </div>
         </section>
       </main>
+      </style>
 
 <footer>
     <div class="container">
       <p>&copy; 2023 ArmillaEACS - Early Access Control System</p>
     </div>
-  </footer>
+  </footer>           
   <script>
     window.addEventListener('scroll', function() {
         const scrollPosition = window.scrollY;
@@ -68,9 +65,5 @@
         }
     });
 </script>
-
-    <footer>
-        ArmillaEACS &copy; 2023.
-    </footer>
 </body>
 </html>

@@ -6,18 +6,19 @@
 
 @section('content')
 
-    <a href="/users/{{session('username')}}">Voltar</a>
-
-    <p>
-        Nome do evento: {{$event->name}}
-    </p>
-
+<div class="info-user">
+    <div class="description">
+        {{$event->name}}
+    <hr class="event-hr">
+<div class="desc-event-u">
     @if($event->description)
         <p>
-            Descrição: {{$event->description}}
+        {{$event->description}}
         </p>
     @endif
-
+</div></div>
+<div class="status-u">
+    <hr class="event-hr">
     <p>
         Oferecido por: {{$owner}}
     </p>
@@ -36,6 +37,6 @@
     @else
         <h3>Este evento não está mais disponível</h3>
     @endif
-
-
+    <a href="/users/{{session('username')}}">Voltar</a>
+</div>
 @endsection

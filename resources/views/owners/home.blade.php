@@ -4,43 +4,47 @@
 @section('profile', session('name'))
 @section('content')
 
-<div class="sidebar">
-    <a href="/owners/{{session('name')}}/register/event">Novo Evento</a>
-</div>
-<div class="sidebar">
-    <u>Meus Eventos</u>
-    <ul>
-        @foreach($allEvents as $event)
-        <li><a href="/owners/{{session('name')}}/event/{{$event->id}}" style="color: red; margin-top:10px;">{{$event->name}}</a>
 
-        @if(!$event->active)
-        (Inativo)
+<div class="sidebar">
+    <a href="/owners/{{session('name')}}/register/event"><u>Novo evento</u></a>
+    <p>Meus eventos</p>
+    <ul>
+        @foreach($allEvents as $currentEvent)
+        @if(!$currentEvent->active)
+        <li class="inactive"><a href="/owners/{{session('name')}}/event/{{$currentEvent->id}}" style="color: red; margin-top:10px;">{{$currentEvent->name}}</a></li>
+        @else
+        <li><a href="/owners/{{session('name')}}/event/{{$currentEvent->id}}" style="color: #f0c200; margin-top:10px;">{{$currentEvent->name}}</a></li>
         @endif
-        </li>
         @endforeach
     </ul>
 </div>
+<div class="info">
 @if(isset($event))
-    Nome: {{ $event->name}}
+    <h2>{{ $event->name}} 
+        @if ($event->active == 1) - Ativo 
+        @else 
+        <div class="evento-inativo"> - Inativo</h2> 
+        @endif
     <br>   
-    <p>
-    @if ($event->description)
-    <p>
-    Descrição do evento:
-    {{$event->description}}</p>
+    <div class="description">
+    @if($event->description)
+    Descrição do evento
+    <hr class="event-hr">
+    <div class="desc-event">{{$event->description}}</div></div>
     @endif
-    <p>
+    <div class="status">
     @if ($event->active == 1)
-    Status: Ativo
     <br>
-    Número de Tags: {{$tags}} <br>
-    Tags usadas: {{$usedTags}} <br>
-    Tags livres: {{$freeTags}} <br>
+    <div class="numtags">Número de Tags: {{$tags}} <br></div>
+    
+    <div class="used-tags">Tags usadas: {{$usedTags}} <br></div>
+    
+    <div class="free-tags">Tags livres: {{$freeTags}} <br></div>
+    
     <a href="/owners/{{session('name')}}/event/{{$event->id}}/inactivate">Inativar</a>
-    @else
-    status: Inativo
     @endif
     </p>
+</div>
 
 
 @endif
