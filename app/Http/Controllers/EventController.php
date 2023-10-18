@@ -50,9 +50,9 @@ class EventController extends Controller
 
                     $numberOfTags = $eventTags->count();
 
-                    $usedTags = $eventTags->whereNotNull('user_id')->count();
+                    $usedTags = $eventTags->whereNotNull('user_id')->all();
 
-                    $freeTags = $numberOfTags - $usedTags;
+                    $freeTags = $eventTags->whereNull('user_id')->all();
 
 
 

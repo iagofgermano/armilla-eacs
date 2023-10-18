@@ -10,7 +10,7 @@
 <body>
     <header>
         <nav class="navbar">
-          <a class="logo" href="/">ArmillaEACS</a>
+          <img src="/img/logo.png"><a class="logo" href="/">ArmillaEACS</a>
           <ul class="nav-links">
           <li><h3>@yield('profile')</h3></li>
           <li><a href="/owners/logout">Logout</a></li>

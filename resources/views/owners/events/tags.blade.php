@@ -4,10 +4,6 @@
 @section('profile', session('name')) 
 
 @section('content')
-<h2>
-    EVENTO CRIADO!!!
-</h2>
-
 Tags utilizadas no evento:
 @foreach($tags as $tag)
 <span>

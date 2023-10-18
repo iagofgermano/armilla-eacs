@@ -36,19 +36,12 @@
     @if ($event->active == 1)
     <br>
     <div class="numtags">Número de Tags: {{$tags}} <br></div>
-    <div class="used-tags">Tags usadas: 
-    @foreach($usedTags as $tag)
-    {{$tag->id}}
-    @endforeach
-    </div><br>
-    <div class="free-tags">Tags livres: 
-    @foreach ($freeTags as $tag)
-    {{$tag->id}} 
-    @endforeach
-    <br></div>
     
-    <a href="/owners/{{session('name')}}/event/{{$event->id}}/inactivate">Inativar</a>
-    <a href="/owners/{{session('name')}}/event/{{$event->id}}/details"><u>Detalhes do evento</u></a>
+    <div class="used-tags">Tags usadas: {{$usedTags}} <br></div>
+    
+    <div class="free-tags">Tags livres: {{$freeTags}} <br></div>
+
+    <a href="/owners/{{session('name')}}/home"><u>Voltar</u></a>
     @endif
     </p>
 </div>
