@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>"ArmillaEACS - Login"</title>
+    <link rel="icon" type="image/png" href="/img/favicon.png" class="favicon"/>
     <link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
-          <a class="logo" href="/">ArmillaEACS</a>
+          <a href="/"><img src="/img/logo-1.png" class="navlogo"></a>
           <ul class="nav-links">
             <li><a href="/owners/login">Para empresas</a></li>
             <li><a href="/users/login">Para usuários</a></li>

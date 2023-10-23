@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="icon" type="image/png" href="/img/favicon.png" class="favicon"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 <body>
     <header>
         <nav class="navbar">
-          <a class="logo" href="/">ArmillaEACS</a>
+                <a href="/"><img src="/img/logo-1.png" class="navlogo"></a>
           <ul class="nav-links">
           <li><h3>{{session('username')}}</h3></li>
           <li><a href="/users/logout">Logout</a></li>

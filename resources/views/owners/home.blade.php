@@ -47,9 +47,7 @@
     @endforeach
     <br></div>
     
-    <a href="/owners/{{session('name')}}/event/{{$event->id}}/inactivate">Inativar</a>
-    <a href="/owners/{{session('name')}}/event/{{$event->id}}/details"><u>Detalhes do evento</u></a>
-    @endif
+    <a href="/owners/{{session('name')}}/event/{{$event->id}}/inactivate">Inativar</a>    @endif
     </p>
 </div>
 
