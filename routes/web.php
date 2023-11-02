@@ -58,6 +58,9 @@ Route::get('/owners/{name}/register/event', [HomepageController::class, 'getTags
 
 Route::get('/owners/{name}/event/{event_id}/tags', [EventController::class, 'getEventTags']);
 
+Route::get('/owners/{name}/event/{event_id}/details', function(Request $request, $name, $event_id){
+    return view('owners.events.details', ['event_id' => $event_id]);
+});
 // user routes
 
 Route::get('/users/login', function (Request $request) {    

@@ -716,13 +716,11 @@ input[type="number"] {
 
 img {
     border-radius: 300px;
-    width: 230px;
+    width: 200px;
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 6);
 }
 
 .navlogo {
-    width: 170px;
-    border-radius: 599px;
-
+    width: 130px;
 }

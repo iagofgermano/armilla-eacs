@@ -28,7 +28,11 @@
             Vagas restantes: {{$wages}}
         </p>
             @if($isSubscribed == '1')
+            <p>
+                Minha tag: {{$myTag->id}}
+            </p>
                 <a href="/users/{{session('username')}}/events/{{$event->id}}/unsubscribe">Retirar-se</a>
+    
             @else
                 @if($wages != 0)
                     <a href="/users/{{session('username')}}/events/{{$event->id}}/subscribe">Inscrever-se</a>

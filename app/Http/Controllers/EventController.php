@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\Owner;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Event_detail;
 
 class EventController extends Controller
 {
@@ -105,6 +106,8 @@ class EventController extends Controller
 
                 $user = User::where('username', $username)->first();
 
+                $myTag = $event->tags()->where('user_id', $user->id)->first();
+
                 $isSubscribed = $event->tags()->where('user_id', $user->id)->count();
                 
                 return view('users.subscribe', 
@@ -113,6 +116,7 @@ class EventController extends Controller
                             'owner' => $owner, 
                             'wages' => $wages,
                             'isSubscribed' => $isSubscribed,
+                            'myTag' => $myTag,
                         ));
 
             }
@@ -173,6 +177,14 @@ class EventController extends Controller
                 return view('owners.events.tags', array('tags' => $tags));
             }
         }
+    }
+
+    public function getDetails(Request $request, String $name, String $event_id){
+                $event_details = Event_detail::where('event_id', $event_id)
+                                ->orderBy('created_at')
+                                ->get();
+
+                return view('owners.events.detailsAPI', array('event_details' => $event_details));
     }
 
     public function userTag(Request $request, String $username, String $event_id){

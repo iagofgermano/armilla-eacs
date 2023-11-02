@@ -29,7 +29,7 @@
       <main>
         <section class="hero">
           <div class="container">
-            <a href="/"><img src="/img/logo-1.png" class="navlogo"></a>
+            <a href="/"><img src="/img/logo-1.png"></a>
             <h2>Controle de fluxo de pessoas em eventos</h2>
             <p>Com a ArmillaEACS, gerencie o acesso de visitantes e crie uma experiência personalizada para seus clientes.</p>
             <a href="#whatsapp" class="btn">Experimente agora</a>

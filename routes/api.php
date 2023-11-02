@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
@@ -17,3 +18,5 @@ use App\Http\Controllers\TagController;
 Route::get('/tag', [TagController::class, 'check']);
 
 Route::get('/tag/register', [TagController::class, 'register']);
+
+Route::get('/{name}/events/{event_id}', [EventController::class, 'getDetails']);

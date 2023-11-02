@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Event_detail;
 
 class TagController extends Controller
 {
@@ -20,6 +21,7 @@ class TagController extends Controller
         "tag_unused" => array('validated' => false),
         "tag_without_event" => array('validated' => false),
         "tag_event_inactive" => array('validated' => false),
+        "absent_type" => array('validated' => false),
     ];
 
     public function register(Request $request)
@@ -65,16 +67,34 @@ class TagController extends Controller
         if(!$event){
             return $this->returnCodes["tag_without_event"];
         }
-
+        
         $active = $event->active;
+
+        if(!$request->has('type')){
+            return $this->returnCodes["absent_type"];
+        }
 
         if($active == '1')
         {
-            return [
-                'validated' => true,
-                'user_id' => $tag->user_id,
-                'event_id' => $event->id
-                ];
+            $event_detail = New Event_detail;
+
+            $event_detail->event_id = $event->id;
+
+            $event_detail->event_name = $event->name;
+
+            $event_detail->tag_id = $tag->id;
+
+            $event_detail->tag_name = $tag->tag;
+
+            $event_detail->user_id = $user->id;
+
+            $event_detail->username = $user->username;
+
+            $event_detail->type = $request->input('type');
+
+            $event_detail->save();
+
+            return $event_detail;
 
         } else {
             return $this->returnCodes["tag_event_inactive"];
