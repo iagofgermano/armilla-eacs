@@ -184,7 +184,7 @@ class EventController extends Controller
                                 ->orderBy('created_at')
                                 ->get();
 
-                return view('owners.events.detailsAPI', array('event_details' => $event_details));
+                                return view('owners.events.detailsAPI', array('event_details' => $event_details));
     }
 
     public function userTag(Request $request, String $username, String $event_id){

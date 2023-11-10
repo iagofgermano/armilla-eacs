@@ -724,3 +724,91 @@ img {
 .navlogo {
     width: 130px;
 }
+
+.detalhe-evento {
+    margin-top: 50px;
+}
+
+
+.detalhe-evento form{
+    background-color: #000000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 500px;
+    width: 1200px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 6);
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+
+.detalhe-evento form::-webkit-scrollbar {
+    width: 5px;
+    background-color: #000;
+}
+
+.detalhe-evento form::-webkit-scrollbar-thumb {
+    background-color: #555;
+}
+
+
+
+  
+.detalhe-evento p {
+    line-height: 1.5;
+    font-family: "Courier New", Times, serif;
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+.detalhe-evento p u {
+    color: #8f7501;
+}
+
+.detalhe-evento .id-tag {
+    color: #f55c03;
+
+}
+
+.detalhe-evento .evento-nome{
+    color: #f5a003;
+    text-decoration: none;
+
+}
+
+.detalhe-evento .users-name{
+    color: #03f584;
+    text-decoration: none;
+}
+
+.entry {
+    margin-left: 5px;
+    color: #04AA6D;
+}
+
+
+.exit {
+    margin-left: 5px;
+    color: red;
+}
+
+.btn-voltar {
+    margin-top: 10px;
+    background-color: #eeeeee;
+    color: #1c1c1c;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-voltar:hover {
+    background-color: #f0c200;
+}
